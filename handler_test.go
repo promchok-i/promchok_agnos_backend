@@ -6,16 +6,6 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-// func TestStrongPasswordSteps(t *testing.T) {
-// 	initPassword := "aA1"
-// 	expect := 3
-// 	result := strongPasswordChecker(initPassword)
-
-// 	if expect != result {
-// 		t.Errorf("Test Failed, Initial Password(%q) = %d; expect %d", initPassword, result, expect)
-// 	}
-// }
-
 func TestStrongPasswordChecker(t *testing.T) {
 	tests := []struct {
 		name     string

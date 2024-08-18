@@ -2,7 +2,7 @@ package middleware
 
 import (
 	"bytes"
-	"io/ioutil"
+	"io"
 
 	"github.com/gin-gonic/gin"
 	"github.com/promchok-i/promchok_agnos_backend/models"
@@ -13,9 +13,9 @@ func LogRequestResponseMiddleware(db *gorm.DB) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var requestBody string
 		if c.Request.Body != nil {
-			bodyBytes, _ := ioutil.ReadAll(c.Request.Body)
+			bodyBytes, _ := io.ReadAll(c.Request.Body)
 			requestBody = string(bodyBytes)
-			c.Request.Body = ioutil.NopCloser(bytes.NewBuffer(bodyBytes))
+			c.Request.Body = io.NopCloser(bytes.NewBuffer(bodyBytes))
 		}
 
 		responseWriter := &bodyLogWriter{body: bytes.NewBufferString(""), ResponseWriter: c.Writer}
